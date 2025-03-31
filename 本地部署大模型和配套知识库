@@ -1,9 +1,18 @@
 #windows本地部署deepseek-r1或其他大模型并使用ragflow创建知识库，用于检索，与模型微调不同，像文件库管家
 ##**下载ollama**
-1.下载ollama
+1.https://ollama.com/ 
 2.在cmd或shell中输入ollama run modelname//比如说ollama run deepseek-r1:1.5b
 3.模型下载后输入相同命令即可在本地跑模型
-4.配置环境变量，使得ragflow能够访问到ollama，在环境变量中新建环境变量:OLLAMA_HOST值为0.0.0.0:11434,第二个环境变量名为OLLAMA_MODELS值为你的OLLAMA模型文件夹所在的目录//比如说C://OLLAMAMODELS，配置完成后需要重启
-##**下载docker**  https://www.docker.com/
-1.docker相当于一个虚拟机的中间层，配置了需要的环境
-2.
+4.配置环境变量，使得ragflow能够访问到ollama，在环境变量中新建环境变量:OLLAMA_HOST值为0.0.0.0:11434,第二个环境变量名为OLLAMA_MODELS值为你的OLLAMA模型文件夹所在的目录//比如说C://OLLAMAMODELS，配置完成后需要重启，如果不想开放这个端口可以用ssh转发
+##**下载docker**  
+1.https://www.docker.com/
+2.docker相当于一个虚拟机的中间层，配置了需要的环境
+##**下载ragflow**
+1.https://github.com/infiniflow/ragflow
+2.配置并下载组件，详情阅读readme
+3.注意在ragflow的env文件中需要将slim版本注释掉#，取而代之下载完整版，因为没有自带的嵌入模型，当然也可以自己部署
+4.在网页输入0.0.0.0就可以进入ragflow登陆页面
+##**配置ragflow**
+1.选择ollama模型，添加选择模型类型为chat，名称可以在cmd里输入ollama list看到具体模型名称，端口号为http://你的IP地址:11434，IP地址可以在cmd中输入ipchonfig指令看到
+2.配置系统模型，选择部署的模型，选择嵌入模型
+3.上传文件，点击三角按钮解析，解析完成后才能开始问答
